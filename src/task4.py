@@ -4,11 +4,12 @@ import traceback
 from time import time
 from typing import Any, Callable
 
-ranks = dict()
+from task3 import ranks
+
 padding = 16
 
 # Functions rank evalualor exception free decorator
-class class_decorator_3:
+class class_decorator_rank_exception:
     def __init__(self, function: Callable[[Any], Any]) -> None:
         self.function = function
         self.function_name = function.__name__

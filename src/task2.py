@@ -6,8 +6,8 @@ from typing import Any, Callable
 padding = 16
 
 # Original source code dump decorator
-def decorator_2(function: Callable[[Any], Any]) -> Any:
-    def wrapper(*args: Any, **kwargs: Any) -> Any:
+def function_decorator_dump(function: Callable[[Any], Any]) -> Any:
+    def wrapper(*args: Any, **kwds: Any) -> Any:
         # Results container preparation and output reading
         # Rerouting output stream
         old_stdout = sys.stdout
@@ -15,14 +15,14 @@ def decorator_2(function: Callable[[Any], Any]) -> Any:
         sys.stdout = new_std_out
 
         # Result evaluation
-        result = function(*args, **kwargs)
+        result = function(*args, **kwds)
         output = new_std_out.getvalue().split("\n")
 
         # Resetting output stream
         sys.stdout = old_stdout
 
         frame = currentframe()
-        documentation = getdoc(function).split("\n")
+        documentation = getdoc(function).split("\n") if getdoc(function) else None
         source = getsource(function).split("\n")
 
         # Function dump results including basic formatting
@@ -37,7 +37,7 @@ def decorator_2(function: Callable[[Any], Any]) -> Any:
                 "Arguments:".ljust(padding),
                 f"positional {getargvalues(frame)[3]['args']}",
                 "".ljust(padding // 2),
-                f"key-worded {getargvalues(frame)[3]['kwargs']}",
+                f"key-worded {getargvalues(frame)[3]['kwds']}",
             )
             # "".join(
             #     [
@@ -46,9 +46,10 @@ def decorator_2(function: Callable[[Any], Any]) -> Any:
             #     ]
             # )
 
-            print("Documentation:".ljust(padding), documentation[0])
-            for item in documentation[1:]:
-                print("".ljust(padding), item)
+            if documentation:
+                print("Documentation:".ljust(padding), documentation[0])
+                for item in documentation[1:]:
+                    print("".ljust(padding), item)
 
             print("Source Code:".ljust(padding), source[0])
             for item in source[1:]:

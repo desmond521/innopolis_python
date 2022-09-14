@@ -4,12 +4,12 @@ from typing import Any, Callable
 
 # Function call counter decorator
 # Execution time of a function decorator
-def decorator_1(function: Callable[[Any], Any]) -> Any:
-    def wrapper(*args: Any, **kwargs: Any) -> Any:
+def function_decorator_time_count(function: Callable[[Any], Any]) -> Any:
+    def wrapper(*args: Any, **kwds: Any) -> Any:
         wrapper.count += 1
 
         start_time = time()
-        result = function(*args, **kwargs)
+        result = function(*args, **kwds)
         print(
             f"'{wrapper.function_name}' call #{wrapper.count} executed in {(time() - start_time):.4f} sec."
         )

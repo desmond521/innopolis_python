@@ -1,3 +1,4 @@
+import contextlib
 import io
 import sys
 from inspect import currentframe, getargvalues, getdoc, getsource, signature
@@ -9,7 +10,7 @@ padding = 16
 
 # Function call counter decorator
 # Execution time of a function decorator
-class class_decorator_1:
+class class_decorator_time_count:
     def __init__(self, function: Callable[[Any], Any]) -> None:
         self.count = 0
         self.function = function
@@ -28,7 +29,7 @@ class class_decorator_1:
 
 
 # Original source code dump decorator
-class class_decorator_2:
+class class_decorator_dump:
     def __init__(self, function: Callable[[Any], Any]) -> None:
         self.function = function
 
@@ -47,7 +48,9 @@ class class_decorator_2:
         sys.stdout = old_stdout
 
         frame = currentframe()
-        documentation = getdoc(self.function).split("\n")
+        documentation = (
+            getdoc(self.function).split("\n") if getdoc(self.function) else None
+        )
         source = getsource(self.function).split("\n")
 
         # Function dump results including basic formatting
@@ -62,12 +65,13 @@ class class_decorator_2:
                 "Arguments:".ljust(padding),
                 f"positional {getargvalues(frame)[3]['args']}",
                 "".ljust(padding // 2),
-                f"key-worded {getargvalues(frame)[3]['kwargs']}",
+                f"key-worded {getargvalues(frame)[3]['kwds']}",
             )
 
-            print("Documentation:".ljust(padding), documentation[0])
-            for item in documentation[1:]:
-                print("".ljust(padding), item)
+            if documentation:
+                print("Documentation:".ljust(padding), documentation[0])
+                for item in documentation[1:]:
+                    print("".ljust(padding), item)
 
             print("Source Code:".ljust(padding), source[0])
             for item in source[1:]:
@@ -85,14 +89,18 @@ class class_decorator_2:
 
 
 # Functions rank evalualor decorator
-class class_decorator_3:
+class class_decorator_rank:
     def __init__(self, function: Callable[[Any], Any]) -> None:
         self.function = function
         self.function_name = function.__name__
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         start_time = time()
-        result = self.function(*args, **kwds)
+
+        with open("output.txt", "a") as output_file:
+            with contextlib.redirect_stdout(output_file):
+                result = self.function(*args, **kwds)
+
         ranks[self.function_name] = time() - start_time
 
         return result

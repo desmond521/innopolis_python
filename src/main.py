@@ -2,11 +2,17 @@ from math import sqrt
 from random import randint
 from typing import List, Tuple
 
-from task1 import decorator_1
-from task2 import decorator_2
+from task1 import function_decorator_time_count
+from task2 import function_decorator_dump
+from task3 import (
+    class_decorator_time_count,
+    class_decorator_dump,
+    class_decorator_rank,
+    ranks,
+)
+from task4 import class_decorator_rank_exception
 
-# from task3 import class_decorator_1, class_decorator_2, class_decorator_3, ranks
-from task4 import class_decorator_3, ranks
+why = lambda x: lambda y: x**y**2
 
 
 def quadratic_equation_solver(a: float, b: float, c: float) -> Tuple[float, float]:
@@ -20,7 +26,6 @@ def quadratic_equation_solver(a: float, b: float, c: float) -> Tuple[float, floa
 
     print(f"'x_1' = {x_1}, 'x_2' = {x_2}.")
     return (x_1, x_2)
-    # return x_1
 
 
 def pascal_triangle_printer(n: int = 1000) -> List[List[int]]:
@@ -48,7 +53,6 @@ def pascal_triangle_printer(n: int = 1000) -> List[List[int]]:
     return rows
 
 
-# @decorator_1
 def func() -> None:
     print("I'm ready to start...")
     result = 0
@@ -57,7 +61,6 @@ def func() -> None:
         result += i**2
 
 
-# @decorator_1
 def funx(n: int = 2, m: int = 10) -> None:
     print("I'm ready to do some serious stuff...")
     max_val = float("-inf")
@@ -94,36 +97,40 @@ def show_ranks() -> None:
 
 if __name__ == "__main__":
     # 1
-    # func()
-    # funx()
-    # func()
-    # funx()
-    # func()
-    # pascal_triangle_printer(2500)
+    func_time_count = function_decorator_time_count(func)
+    func_time_count()
+
+    funx_time_count = function_decorator_time_count(funx)
+    funx_time_count()
+
+    func_time_count()
+
+    funx_time_count()
+
+    func_time_count()
+
+    pascal_triangle_printer_time_count = function_decorator_time_count(
+        pascal_triangle_printer
+    )
+    pascal_triangle_printer_time_count(20)
 
     # 2
-    # funh_time = decorator_1(funh)
-    # funh_time(None, bar2="")
+    # class_decorator_time_count(funh)(None, bar2="")
 
-    # funh_dump = decorator_2(funh)
-    # funh_dump(None, bar2="")
+    # function_decorator_dump(funh)(None, bar2="")
+    # class_decorator_dump(pascal_triangle_printer)(10)
+    # class_decorator_dump(quadratic_equation_solver)(-2, 2, 1)
 
-    # 3, 4
-    func_rank = class_decorator_3(func)
-    func_rank()
+    # 3,
+    # class_decorator_rank(func)()
+    # class_decorator_rank(funx)()
+    # class_decorator_rank(funh)(None, bar2="")
+    # class_decorator_rank(why)(4)(6)
 
-    funx_rank = class_decorator_3(funx)
-    funx_rank()
-
-    funh_rank = class_decorator_3(funh)
-    funh_rank(None, bar2="")
-
+    # 4
     # Exception
-    quadratic_equation_solver_rank = class_decorator_3(quadratic_equation_solver)
-    # quadratic_equation_solver_rank(-2, 2, 1)
-    quadratic_equation_solver_rank(1, 1, 1)
+    # class_decorator_rank_exception(quadratic_equation_solver)(1, 1, 1)
+    # class_decorator_rank_exception(quadratic_equation_solver)(-2, 2, 1)
+    # class_decorator_rank_exception(pascal_triangle_printer)(10)
 
-    pascal_triangle_printer_rank = class_decorator_3(pascal_triangle_printer)
-    pascal_triangle_printer_rank(10)
-
-    show_ranks()
+    # show_ranks()
