@@ -1,3 +1,4 @@
+import functools
 import io
 import sys
 from inspect import currentframe, getargvalues, getdoc, getsource, signature
@@ -7,6 +8,7 @@ padding = 16
 
 # Original source code dump decorator
 def function_decorator_dump(function: Callable[[Any], Any]) -> Any:
+    @functools.wraps(function)
     def wrapper(*args: Any, **kwds: Any) -> Any:
         # Results container preparation and output reading
         # Rerouting output stream
@@ -26,42 +28,36 @@ def function_decorator_dump(function: Callable[[Any], Any]) -> Any:
         source = getsource(function).split("\n")
 
         # Function dump results including basic formatting
-        try:
-            print("Name:".ljust(padding), function.__name__)
+        print("Name:".ljust(padding), function.__name__)
 
-            print("Type:".ljust(padding), function.__class__)
+        print("Type:".ljust(padding), function.__class__)
 
-            print("Signature:".ljust(padding), signature(function))
+        print("Signature:".ljust(padding), signature(function))
 
-            print(
-                "Arguments:".ljust(padding),
-                f"positional {getargvalues(frame)[3]['args']}",
-                "".ljust(padding // 2),
-                f"key-worded {getargvalues(frame)[3]['kwds']}",
-            )
-            # "".join(
-            #     [
-            #         f"{v.kind.description}, {v.name}, {v.annotation}, {v.default}"
-            #         for _, v in signature(function).parameters.items()
-            #     ]
-            # )
+        print(
+            "Arguments:".ljust(padding),
+            f"positional {getargvalues(frame)[3]['args']}",
+            "".ljust(padding // 2),
+            f"key-worded {getargvalues(frame)[3]['kwds']}",
+        )
 
-            if documentation:
-                print("Documentation:".ljust(padding), documentation[0])
-                for item in documentation[1:]:
-                    print("".ljust(padding), item)
+        if documentation:
+            print("Documentation:".ljust(padding), documentation[0])
+            for item in documentation[1:]:
+                print("".ljust(padding), item)
 
-            print("Source Code:".ljust(padding), source[0])
+        print("Source Code:".ljust(padding), source[0])
+        if len(source) > 1:
             for item in source[1:]:
                 print("".ljust(padding), item)
 
-            print("Output:".ljust(padding), output[0])
-            for item in output[1:]:
-                print("".ljust(padding), item)
+        print("Output:".ljust(padding), output[0])
+        for item in output[1:]:
+            print("".ljust(padding), item)
 
-            print("Returns:".ljust(padding), result)
-        finally:
-            del frame
+        print("Returns:".ljust(padding), result)
+    
+        del frame
 
         return result
 

@@ -1,3 +1,4 @@
+import functools
 from time import time
 from typing import Any, Callable
 
@@ -5,6 +6,7 @@ from typing import Any, Callable
 # Function call counter decorator
 # Execution time of a function decorator
 def function_decorator_time_count(function: Callable[[Any], Any]) -> Any:
+    @functools.wraps(function)
     def wrapper(*args: Any, **kwds: Any) -> Any:
         wrapper.count += 1
 

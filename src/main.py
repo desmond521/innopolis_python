@@ -12,7 +12,8 @@ from task3 import (
 )
 from task4 import class_decorator_rank_exception
 
-why = lambda x: lambda y: x**y**2
+why_1 = lambda x, y: x**y**2
+why_2 = lambda x: lambda y: x**y
 
 
 def quadratic_equation_solver(a: float, b: float, c: float) -> Tuple[float, float]:
@@ -97,35 +98,37 @@ def show_ranks() -> None:
 
 if __name__ == "__main__":
     # 1
-    func_time_count = function_decorator_time_count(func)
-    func_time_count()
+    # func_time_count = function_decorator_time_count(func)
+    # func_time_count()
 
-    funx_time_count = function_decorator_time_count(funx)
-    funx_time_count()
+    # funx_time_count = function_decorator_time_count(funx)
+    # funx_time_count()
 
-    func_time_count()
+    # func_time_count()
 
-    funx_time_count()
+    # funx_time_count()
 
-    func_time_count()
+    # func_time_count()
 
-    pascal_triangle_printer_time_count = function_decorator_time_count(
-        pascal_triangle_printer
-    )
-    pascal_triangle_printer_time_count(20)
+    # pascal_triangle_printer_time_count = function_decorator_time_count(
+    #     pascal_triangle_printer
+    # )
+    # pascal_triangle_printer_time_count(20)
 
     # 2
     # class_decorator_time_count(funh)(None, bar2="")
 
     # function_decorator_dump(funh)(None, bar2="")
+    # class_decorator_dump(funh)(None, None)
     # class_decorator_dump(pascal_triangle_printer)(10)
     # class_decorator_dump(quadratic_equation_solver)(-2, 2, 1)
 
-    # 3,
-    # class_decorator_rank(func)()
-    # class_decorator_rank(funx)()
-    # class_decorator_rank(funh)(None, bar2="")
-    # class_decorator_rank(why)(4)(6)
+    # 3
+    class_decorator_rank(func)()
+    class_decorator_rank(funx)()
+    class_decorator_rank(funh)(None, bar2="")
+    class_decorator_rank(why_1)(4, 6)
+    class_decorator_rank(why_2)(4)(6)
 
     # 4
     # Exception
@@ -133,4 +136,4 @@ if __name__ == "__main__":
     # class_decorator_rank_exception(quadratic_equation_solver)(-2, 2, 1)
     # class_decorator_rank_exception(pascal_triangle_printer)(10)
 
-    # show_ranks()
+    show_ranks()
