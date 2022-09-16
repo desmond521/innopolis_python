@@ -8,8 +8,8 @@ from typing import Any, Callable
 ranks = dict()
 padding = 16
 
-# Function call counter decorator
-# Execution time of a function decorator
+# Function call counter using class decorator
+# Execution time of a function using class decorator
 class class_decorator_time_count:
     def __init__(self, function: Callable[[Any], Any]) -> None:
         self.count = 0
@@ -28,7 +28,7 @@ class class_decorator_time_count:
         return result
 
 
-# Original source code dump decorator
+# Original source code dump using class decorator
 class class_decorator_dump:
     def __init__(self, function: Callable[[Any], Any]) -> None:
         self.function = function
@@ -88,7 +88,7 @@ class class_decorator_dump:
         return result
 
 
-# Functions rank evalualor decorator
+# Functions rank evalualor using class decorator
 class class_decorator_rank:
     def __init__(self, function: Callable[[Any], Any]) -> None:
         self.function = function

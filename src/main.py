@@ -10,13 +10,41 @@ from task3 import (
     class_decorator_rank,
     ranks,
 )
-from task4 import class_decorator_rank_exception
+from task4 import (
+    class_decorator_time_count_exception,
+    class_decorator_dump_exception,
+    class_decorator_rank_exception,
+    function_decorator_time_count,
+    function_decorator_dump_exception,
+)
 
-why_1 = lambda x, y: x**y**2
+why_1 = lambda x, y: x**y
 why_2 = lambda x: lambda y: x**y
 
 
 def quadratic_equation_solver(a: float, b: float, c: float) -> Tuple[float, float]:
+    """
+    My quadratic equation solver funciton.
+
+    Parameters
+    ----------
+    a : float
+        coefficient a
+    b : float
+        coefficient b
+    c : float
+        coefficient c
+
+    Returns
+    -------
+    Tuple[float, float]
+        a tuple of x_1 and x_2
+
+    Raises
+    ------
+    ValueError
+        when the discriminant is less than zero
+    """
     discriminant = b**2 - 4 * a * c
 
     if discriminant < 0:
@@ -30,13 +58,23 @@ def quadratic_equation_solver(a: float, b: float, c: float) -> Tuple[float, floa
 
 
 def pascal_triangle_printer(n: int = 1000) -> List[List[int]]:
-    """Returns n-rows of the Pascal Triangle.
+    """
+    My Pascal triangle printer function.
 
-    Parameters:
-            n (int): A integer number of rows (default 1000)
+    Parameters
+    ----------
+    n : int, optional
+        number of rows
 
-    Returns:
-            rows (List[List[int]]): the Pascal Triangle rows
+    Returns
+    -------
+    List[List[int]]
+        a list of n-rows of the Pascal Triangle
+
+    Raises
+    ------
+    ValueError
+        when the parameter n is less than or equals zero
     """
     if n <= 0:
         raise ValueError
@@ -55,6 +93,13 @@ def pascal_triangle_printer(n: int = 1000) -> List[List[int]]:
 
 
 def func() -> None:
+    """
+    A simple function.
+
+    Returns
+    -------
+    None
+    """
     print("I'm ready to start...")
     result = 0
     n = randint(10, 751)
@@ -63,10 +108,24 @@ def func() -> None:
 
 
 def funx(n: int = 2, m: int = 10) -> None:
+    """
+    A simple function.
+
+    Parameters
+    ----------
+    n : int, optional
+        power
+    m : int, optional
+        range
+
+    Returns
+    -------
+    None
+    """
     print("I'm ready to do some serious stuff...")
     max_val = float("-inf")
     n = randint(10, 751)
-    result = [pow(i, n) for i in range(m)]
+    result = [why_1(i, n) for i in range(m)]
     for i in result:
         if i > max_val:
             max_val = i
@@ -74,14 +133,30 @@ def funx(n: int = 2, m: int = 10) -> None:
 
 def funh(bar1, bar2=""):
     """
-    This function does something useful
-    :param bar1: description
-    :param bar2: description
+    This function does something useful.
+
+    Parameters
+    ----------
+    bar1 : Any
+        bar1 description
+    bar2 : Any, optional
+        bar2 description
+
+    Returns
+    -------
+    None
     """
     print("some\nmultiline\noutput")
 
 
 def show_ranks() -> None:
+    """
+    This function shows the ranking table of the decorated functions.
+
+    Returns
+    -------
+    None
+    """
     global ranks
     padding = 26
 

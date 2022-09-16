@@ -6,7 +6,7 @@ from typing import Any, Callable
 
 padding = 16
 
-# Original source code dump decorator
+# Original source code dump using function decorator
 def function_decorator_dump(function: Callable[[Any], Any]) -> Any:
     @functools.wraps(function)
     def wrapper(*args: Any, **kwds: Any) -> Any:
