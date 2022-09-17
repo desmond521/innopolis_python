@@ -8,14 +8,8 @@ from task3 import (
     class_decorator_time_count,
     class_decorator_dump,
     class_decorator_rank,
+    padding,
     ranks,
-)
-from task4 import (
-    class_decorator_time_count_exception,
-    class_decorator_dump_exception,
-    class_decorator_rank_exception,
-    function_decorator_time_count,
-    function_decorator_dump_exception,
 )
 
 why_1 = lambda x, y: x**y
@@ -149,6 +143,10 @@ def funh(bar1, bar2=""):
     print("some\nmultiline\noutput")
 
 
+def no_doc() -> None:
+    print("Sorry!")
+
+
 def show_ranks() -> None:
     """
     This function shows the ranking table of the decorated functions.
@@ -158,57 +156,59 @@ def show_ranks() -> None:
     None
     """
     global ranks
-    padding = 26
-
     ranks = dict(sorted(ranks.items(), key=lambda item: item[1]))
 
-    print("FUNCTION".ljust(padding), "RANK".ljust(padding // 4), "TIME ELAPSED (SEC.)")
+    print(
+        "FUNCTION".ljust(padding * 2, "."),
+        "RANK".ljust(padding // 2, "."),
+        "TIME ELAPSED (SEC.)",
+        sep="",
+    )
     for index, (key, value) in enumerate(ranks.items()):
         print(
-            str(key).ljust(padding),
-            str(index + 1).ljust(padding // 4),
+            str(key).ljust(padding * 2),
+            str(index + 1).ljust(padding // 2),
             f"{value:.6f}",
+            sep="",
         )
 
 
 if __name__ == "__main__":
     # 1
-    # func_time_count = function_decorator_time_count(func)
-    # func_time_count()
-
-    # funx_time_count = function_decorator_time_count(funx)
-    # funx_time_count()
-
-    # func_time_count()
-
-    # funx_time_count()
-
-    # func_time_count()
-
-    # pascal_triangle_printer_time_count = function_decorator_time_count(
-    #     pascal_triangle_printer
-    # )
-    # pascal_triangle_printer_time_count(20)
+    func_time_count = function_decorator_time_count(func)
+    func_time_count()
+    funx_time_count = function_decorator_time_count(funx)
+    funx_time_count()
+    func_time_count()
+    funx_time_count()
+    func_time_count()
+    pascal_triangle_printer_time_count = function_decorator_time_count(
+        pascal_triangle_printer
+    )
+    pascal_triangle_printer_time_count(20)
 
     # 2
-    # class_decorator_time_count(funh)(None, bar2="")
-
-    # function_decorator_dump(funh)(None, bar2="")
-    # class_decorator_dump(funh)(None, None)
-    # class_decorator_dump(pascal_triangle_printer)(10)
-    # class_decorator_dump(quadratic_equation_solver)(-2, 2, 1)
+    function_decorator_dump(funh)(None, bar2="")
 
     # 3
+    funh_time_count = class_decorator_time_count(funh)
+    funh_time_count(None, bar2="")
+    funx_time_count = class_decorator_time_count(funx)
+    funx_time_count()
+    funh_time_count(None, bar2="")
+    funx_time_count()
+
+    class_decorator_dump(funh)(None, None)
+    class_decorator_dump(pascal_triangle_printer)(10)
+    class_decorator_dump(quadratic_equation_solver)(-2, 2, 1)
+    class_decorator_dump(no_doc)()
+    # Exception
+    class_decorator_dump(quadratic_equation_solver)(1, 1, 1)
+
     class_decorator_rank(func)()
     class_decorator_rank(funx)()
     class_decorator_rank(funh)(None, bar2="")
     class_decorator_rank(why_1)(4, 6)
     class_decorator_rank(why_2)(4)(6)
-
-    # 4
-    # Exception
-    # class_decorator_rank_exception(quadratic_equation_solver)(1, 1, 1)
-    # class_decorator_rank_exception(quadratic_equation_solver)(-2, 2, 1)
-    # class_decorator_rank_exception(pascal_triangle_printer)(10)
 
     show_ranks()
