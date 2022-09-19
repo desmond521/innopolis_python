@@ -1,5 +1,5 @@
-import functools
 import sys
+from functools import wraps
 from inspect import getsource, signature
 from textwrap import indent
 from typing import Any, Callable
@@ -38,7 +38,7 @@ def trim(docstring: str) -> str:
 def function_decorator_dump(
     function: Callable[[Any], Any]
 ) -> Callable[[Any, Any], Any]:
-    @functools.wraps(function)
+    @wraps(function)
     def wrapper(*args: Any, **kwds: Any) -> Any:
         # Function dump container preparation and output/return reading
         # Function execution time printer

@@ -190,7 +190,7 @@ def show_ranks() -> None:
         print(
             str(key).ljust(padding * 2),
             str(index + 1).ljust(padding // 2),
-            f"{value:.6f}",
+            f"{value:.10f}",
             sep="",
         )
 
@@ -201,7 +201,9 @@ if __name__ == "__main__":
     func_time_count()
     funx_time_count = function_decorator_time_count(funx)
     funx_time_count()
-    matrix_multiplication_time_count = function_decorator_time_count(matrix_multiplication)
+    matrix_multiplication_time_count = function_decorator_time_count(
+        matrix_multiplication
+    )
     matrix_multiplication_time_count(
         [[12, 7, 3], [4, 5, 6], [7, 8, 9]],
         [[5, 8, 1, 2], [6, 7, 3, 0], [4, 5, 9, 1]],

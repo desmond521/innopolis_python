@@ -82,6 +82,7 @@ class class_decorator_rank:
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         start_time = time()
         output, result, flag = class_decorator_exception(self.function)(*args, **kwds)
-        ranks[self.function.__name__] = time() - start_time
+        end = time() - start_time
+        ranks[self.function.__name__] = end
 
         return result

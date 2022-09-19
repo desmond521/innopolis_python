@@ -1,4 +1,4 @@
-import functools
+from functools import wraps
 from time import time
 from typing import Any, Callable
 
@@ -10,14 +10,15 @@ from task4 import function_decorator_exception
 def function_decorator_time_count(
     function: Callable[[Any], Any]
 ) -> Callable[[Any, Any], Any]:
-    @functools.wraps(function)
+    @wraps(function)
     def wrapper(*args: Any, **kwds: Any) -> Any:
         wrapper.count += 1
 
         start = time()
         output, result, flag = function_decorator_exception(function)(*args, **kwds)
+        end = time() - start
         print(
-            f"'{function.__name__}' call #{wrapper.count} executed in {(time() - start):.4f} sec. {'with an exception' if flag else ''}"
+            f"'{function.__name__}' call #{wrapper.count} executed in {end:.4f} sec. {'with an exception' if flag else ''}"
         )
 
         return output, result, flag
