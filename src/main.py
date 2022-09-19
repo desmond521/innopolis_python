@@ -1,6 +1,6 @@
 from math import sqrt
 from random import randint
-from typing import List, Tuple
+from typing import Any, List, Tuple
 
 from task1 import function_decorator_time_count
 from task2 import function_decorator_dump
@@ -143,6 +143,28 @@ def funh(bar1, bar2=""):
     print("some\nmultiline\noutput")
 
 
+def matrix_multiplication(x: Any, y: Any) -> Any:
+    """
+    Function to multiply two matrices using list comprehension.
+
+    Parameters
+    ----------
+    x : Any
+        first matrix
+    y : Any
+        second matrix
+
+    Returns
+    -------
+    Any
+        result matrix
+    """
+
+    return [
+        [sum(a * b for a, b in zip(x_row, y_col)) for y_col in zip(*y)] for x_row in x
+    ]
+
+
 def no_doc() -> None:
     print("Sorry!")
 
@@ -179,6 +201,11 @@ if __name__ == "__main__":
     func_time_count()
     funx_time_count = function_decorator_time_count(funx)
     funx_time_count()
+    matrix_multiplication_time_count = function_decorator_time_count(matrix_multiplication)
+    matrix_multiplication_time_count(
+        [[12, 7, 3], [4, 5, 6], [7, 8, 9]],
+        [[5, 8, 1, 2], [6, 7, 3, 0], [4, 5, 9, 1]],
+    )
     func_time_count()
     funx_time_count()
     func_time_count()
