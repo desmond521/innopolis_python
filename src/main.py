@@ -12,7 +12,6 @@ from task3 import (
     ranks,
 )
 
-
 why_1 = lambda x, y: x**y
 why_2 = lambda x: lambda y: x**y
 

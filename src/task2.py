@@ -42,7 +42,7 @@ def function_decorator_dump(
     def wrapper(*args: Any, **kwds: Any) -> Any:
         # Function dump container preparation and output/return reading
         # Function execution time printer
-        output, result, exc_flag = function_decorator_time_count(function)(*args, **kwds)
+        output, result, flag = function_decorator_time_count(function)(*args, **kwds)
         documentation = indent(trim(function.__doc__), padding * " ")[padding:]
         source = indent(getsource(function), padding * " ")[padding:]
         output = indent(output.getvalue(), padding * " ")[padding:]

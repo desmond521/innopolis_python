@@ -14,17 +14,17 @@ def function_decorator_exception(function: Callable[[Any], Any]) -> Any:
         with open("output.txt", "a") as output_file, open("log.txt", "a") as log_file:
             with redirect_stdout(StringIO()) as output:
                 try:
-                    exc_flag = False
+                    flag = False
                     result = function(*args, **kwds)
                     output_file.write(
                         f"{datetime.datetime.now()}\n{output.getvalue()}\n"
                     )
                 except:
-                    exc_flag = True
+                    flag = True
                     log_file.write(f"{datetime.datetime.now()}\n{format_exc()}\n")
-                    return output, None, exc_flag
+                    return output, None, flag
 
-        return output, result, exc_flag
+        return output, result, flag
 
     return wrapper
 
@@ -38,14 +38,14 @@ class class_decorator_exception:
         with open("output.txt", "a") as output_file, open("log.txt", "a") as log_file:
             with redirect_stdout(StringIO()) as output:
                 try:
-                    exc_flag = False
+                    flag = False
                     result = self.function(*args, **kwds)
                     output_file.write(
                         f"{datetime.datetime.now()}\n{output.getvalue()}\n"
                     )
                 except:
-                    exc_flag = True
+                    flag = True
                     log_file.write(f"{datetime.datetime.now()}\n{format_exc()}\n")
-                    return output, None, exc_flag
+                    return output, None, flag
 
-        return output, result, exc_flag
+        return output, result, flag

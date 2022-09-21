@@ -22,14 +22,14 @@ class class_decorator_time_count:
         self.count += 1
 
         start = time()
-        output, result, exc_flag = class_decorator_exception(self.function)(*args, **kwds)
+        output, result, flag = class_decorator_exception(self.function)(*args, **kwds)
         with open("output.txt", "a") as output_file:
             with redirect_stdout(output_file):
                 print(
-                    f"{datetime.datetime.now()}\n'{self.function.__name__}' call #{self.count} executed in {(time() - start):.4f} sec. {'with an exception' if exc_flag else ''}\n"
+                    f"{datetime.datetime.now()}\n'{self.function.__name__}' call #{self.count} executed in {(time() - start):.4f} sec. {'with an exception' if flag else ''}\n"
                 )
 
-        return output, result, exc_flag
+        return output, result, flag
 
 
 # Original source code dump using class decorator
@@ -39,7 +39,7 @@ class class_decorator_dump:
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         # Function dump container preparation and output/return reading
-        output, result, exc_flag = class_decorator_time_count(self.function)(*args, **kwds)
+        output, result, flag = class_decorator_time_count(self.function)(*args, **kwds)
         documentation = indent(trim(self.function.__doc__), padding * " ")[padding:]
         source = indent(getsource(self.function), padding * " ")[padding:]
         output = indent(output.getvalue(), padding * " ")[padding:]
@@ -81,7 +81,7 @@ class class_decorator_rank:
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         start_time = time()
-        output, result, exc_flag = class_decorator_exception(self.function)(*args, **kwds)
+        output, result, flag = class_decorator_exception(self.function)(*args, **kwds)
         end = time() - start_time
         ranks[self.function.__name__] = end
 

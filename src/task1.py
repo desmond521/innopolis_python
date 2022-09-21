@@ -15,13 +15,13 @@ def function_decorator_time_count(
         wrapper.count += 1
 
         start = time()
-        output, result, exc_flag = function_decorator_exception(function)(*args, **kwds)
+        output, result, flag = function_decorator_exception(function)(*args, **kwds)
         end = time() - start
         print(
-            f"'{function.__name__}' call #{wrapper.count} executed in {end:.4f} sec. {'with an exception' if exc_flag else ''}"
+            f"'{function.__name__}' call #{wrapper.count} executed in {end:.4f} sec. {'with an exception' if flag else ''}"
         )
 
-        return output, result, exc_flag
+        return output, result, flag
 
     wrapper.count = 0
 
