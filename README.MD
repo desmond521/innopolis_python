@@ -2,22 +2,22 @@
 
 ## Python Assignment 1
 
-> Run *main.py* to inspect tasks and receive output.
+> Run **main.py** to inspect tasks and receive output.
 
 All source files (*.py) are located in '_src/_' directory.
 
-1. _main.py_
+1. **main.py**
     * file to run.
     * contains test functions.
     * applies decorators (implemented in tasks 1-4) on test functions.
     * shows test results.
-2. _task1.py_ 
-    * contains function decorator that print information about decorated function:
-       * function name.
-       * number of function calls.
-       * function execution time.
-3. _task2.py_
-    * contains function decorator that prints information about a decorated function:
+2. **task1.py** 
+    Contains function decorator that prints information about decorated functions:
+    * function name.
+    * number of function calls.
+    * function execution time.
+3. **task2.py**
+    Contains function decorator that prints information about decorated functions:
     1. output from the 1st task.
     2. function name.
     3. function object.
@@ -29,9 +29,9 @@ All source files (*.py) are located in '_src/_' directory.
     7. function source code.
     8. function output.
     9. function return value.
-4. _task3.py_
-    * contains class decorators with the same behaviour as ones from tasks 1 and 2.
-    * also implemented class decorator that rank decorated functions by the execution time.
-5. _task4.py_
-    * extends decorator_1 behaviour while protecting decorated functions from exceptions, using '_Try and Except_' statement.
-    * in case of raised exception, redirects stderr to logfile including timestamp.
+4. **task3.py**
+    Contains class decorators with the same behaviour as ones from tasks 1 and 2.
+    Also implemented class decorator that rank decorated functions by the execution time.
+5. **task4.py**
+    Extends decorators behaviour while protecting decorated functions from exceptions, using **Try & Except** statement.
+    In case of raised exception, redirects stderr to logfile including timestamp.
