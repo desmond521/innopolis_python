@@ -2,7 +2,7 @@
 
 ## Python Assignment 1
 
-> Run _main.py_ to inspect tasks and receive output.
+> Run *main.py* to inspect tasks and receive output.
 
 All source files (*.py) are located in '_src/_' directory.
 
