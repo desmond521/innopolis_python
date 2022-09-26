@@ -40,9 +40,11 @@ All source files (*.py) are located in '_src/_' directory.
 4. **task3.py**
     
     Contains class decorators with the same behaviour as ones from tasks 1 and 2.
+    
     Also implemented class decorator that rank decorated functions by the execution time.
     
 5. **task4.py**
     
     Extends decorators behaviour while protecting decorated functions from exceptions, using **Try & Except** statement.
+    
     In case of raised exception, redirects stderr to logfile including timestamp.
