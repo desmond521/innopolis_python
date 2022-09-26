@@ -25,17 +25,17 @@ All source files (*.py) are located in '_src/_' directory.
     
     Contains function decorator that prints information about decorated functions:
     
-    1) output from the 1st task.
-    2) function name.
-    3) function object.
-    4) function signature.
-    5) function arguments.
-        1. positional.
-        2. key-worded.
-    6) function docstring.
-    7) function source code.
-    8) function output.
-    9) function return value.
+    * output from the 1st task.
+    * function name.
+    * function object.
+    * function signature.
+    * function arguments.
+        * positional.
+        * key-worded.
+    * function docstring.
+    * function source code.
+    * function output.
+    * function return value.
     
 4. **task3.py**
     
