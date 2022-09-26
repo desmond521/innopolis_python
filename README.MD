@@ -28,14 +28,14 @@ All source files (*.py) are located in '_src/_' directory.
     1) output from the 1st task.
     2) function name.
     3) function object.
-    4. function signature.
-    5. function arguments.
+    4) function signature.
+    5) function arguments.
         1. positional.
         2. key-worded.
-    6. function docstring.
-    7. function source code.
-    8. function output.
-    9. function return value.
+    6) function docstring.
+    7) function source code.
+    8) function output.
+    9) function return value.
     
 4. **task3.py**
     
